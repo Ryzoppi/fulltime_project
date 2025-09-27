@@ -1,0 +1,17 @@
+Fundo Principal #221111
+
+Borda do Cabeçalho #382929
+
+Cor Principal #E03838
+
+Fundo do Formulário #261C1C
+
+Cor das Bordas #523D3D
+
+Hover Biometria #463434
+
+Hover nos Botões #D42A2A
+
+Fundo logsbox #2b2a2b
+
+Superior logsbox #201f1f
