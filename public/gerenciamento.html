@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles/adminPage.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/adminPage.css">
     <title>Painel de Administração</title>
 </head>
 
@@ -11,13 +12,13 @@
     <!-- Cabeçalho -->
     <header id="cabecalho">
         <nav class="navbar">
-            <a href="#"><img src="../assets/Logo.png" alt="Logo" class="logo da Fulltime IA"></a>
+            <a href="dashboard.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"></a>
             <div class="nav-links">
-                <a href="#" id="linkDashboard">Dashboard</a>
-                <a href="#" id="linkCameras">Câmeras</a>
-                <a href="#" id="linkAlarmes">Alarmes</a>
-                <a href="#" id="linkConfig">Configurações</a>
-                <a href="#" id="linkGerenciamento">Gerenciamento</a>
+                <a href="dashboard.html" id="linkDashboard">Dashboard</a>
+                <a href="cameras.html" id="linkCameras">Câmeras</a>
+                <a href="alarmes.html" id="linkAlarmes">Alarmes</a>
+                <a href="config.html" id="linkConfig">Configurações</a>
+                <a href="gerenciamento.html" id="linkGerenciamento" class="active">Gerenciamento</a>
             </div>
         </nav>
     </header>
@@ -25,7 +26,7 @@
     <main>
         <h1>Gerenciamento</h1>
         <h3>Logs de Atividades</h3>
-        
+
         <div class="boxEscura">
             <p>DATA/HORA</p>
             <p>TIPO DE EVENTO</p>
@@ -35,7 +36,7 @@
         <div class="boxClara">
         </div>
 
-        
+
         <h3>Gerenciar permissões</h3>
         <div class="boxEscura">
             <p>PERFIL</p>
