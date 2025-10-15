@@ -1,0 +1,50 @@
+main {
+    padding: 4px
+}
+
+.prioridadeAlta, .prioridadeMedia, .prioridadeBaixa {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.prioridadeAlta img, .alarmes {
+    width: 58em;
+    padding: 0 4px;
+}
+
+.prioridadeMedia img {
+    width: 32%;
+    padding: 0 4px;
+}
+
+.prioridadeBaixa img {
+    width: 24%;
+    padding: 0 4px;
+}
+
+.alarmes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alarme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+    background-color: #E03838;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    background-color: #261C1C;
+    margin: 24px 0 0 0;
+}
