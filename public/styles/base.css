@@ -8,6 +8,10 @@ html {
     background: #221111;
 }
 
+main {
+    padding: 4px
+}
+
 /* Inicio Estilos do Cabeçalho */
 
 header {
@@ -47,6 +51,10 @@ header {
     height: 3rem;
     margin-left: 16px;
 }
+
+/* .container {
+    padding: 30px 50px;
+}  */
 
 /* Fim Estilos do Cabeçalho */
 

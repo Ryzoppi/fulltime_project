@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações de Gerenciamento</title>
     <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/config.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Configurações</title>
 </head>
 
@@ -21,7 +26,53 @@
             </div>
         </nav>
     </header>
-    <h1>Configurações</h1>
+
+    <main class="container">
+        <h1>Configurações</h1>
+        
+        <section class="active-preset-section">
+            <h2>Preset ativo</h2>
+            <div class="active-preset-container">
+                <div class="preset-preview">
+                    <img src="https://i.imgur.com/3a1ac8.png" alt="Preview do layout do dashboard" style="width: 300px; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="preset-details">
+                    <h3>Default Layout</h3>
+                    <p>lorem dijaslkjdklasndjkasnjkldnaslkdnaskldnaslkdnaskjndkasndjkasndjkasndkasnaskjlkdjsanlkdnasndklasndjkasnldkjsanlkdnaslkdasaskjlkdjsanlkdnsandnasdkas djsa djkals djkalsjkdasd n da dmmaskldmsal</p>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="available-presets-section">
+            <h2>Presets disponíveis</h2>
+            <div class="presets-grid">
+                <div class="preset-card">
+                    <div class="preset-thumbnail"></div>
+                    <p>Prioridade Câmera</p>
+                </div>
+                <div class="preset-card">
+                    <div class="preset-thumbnail"></div>
+                    <p>Prioridade Alarme</p>
+                </div>
+                <div class="preset-card">
+                    <div class="preset-thumbnail"></div>
+                    <p>Custom Layout 1</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <button class="btn btn-primary">Create new preset</button>
+            <button class="btn btn-success">Save Changes</button>
+        </footer>
+    </main>
+
+    <script src="config.js"></script>
+
 </body>
 
 </html>

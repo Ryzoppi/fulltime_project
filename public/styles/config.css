@@ -1,0 +1,188 @@
+:root {
+    --bg-color: #221111;
+    --surface-color: #382929;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #b3b3b3;
+    --accent-color: #e53935;
+    --border-color: #444444;
+    --success-color: #d32f2f; /* Cor do botão "Save Changes" */
+    --danger-color: #d32f2f; /* Cor do botão "Delete" */
+    --secondary-button-bg: #555;
+    --active-preset-bg: #201f1f;
+}
+/* 
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+} */
+
+/*header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}*/
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--secondary-text-color);
+    font-size: 16px;
+    padding-bottom: 5px;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary-text-color);
+}
+
+nav a.active {
+    color: var(--primary-text-color);
+    border-bottom: 2px solid var(--accent-color);
+    font-weight: 500;
+} */
+
+/* .container {
+    padding: 30px 50px;
+}  */
+
+/* h1, h2, h3 {
+    margin: 0 0 20px 0;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+    color: var(--secondary-text-color);
+    margin-top: 30px;
+} */
+
+.active-preset-section .active-preset-container {
+    display: flex;
+    gap: 30px;
+    background-color: var(--active-preset-bg);
+    padding: 25px;
+    border-radius: 8px;
+    align-items: flex-start;
+}
+
+.preset-preview img {
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.preset-details h3 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.preset-details p {
+    color: var(--secondary-text-color);
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.action-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-button-bg);
+}
+
+.btn-secondary:hover {
+    background-color: #666;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #e53935;
+}
+
+.available-presets-section .presets-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.preset-card {
+    cursor: pointer;
+}
+
+.preset-thumbnail {
+    width: 200px;
+    height: 120px;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s;
+}
+
+.preset-card:hover .preset-thumbnail {
+    border-color: var(--accent-color);
+}
+
+.preset-card p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.main-footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-primary {
+    background-color: #333;
+    border: 1px solid var(--secondary-button-bg);
+}
+.btn-primary:hover {
+    background-color: #444;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+}
+
+.btn-success:hover {
+    background-color: #e53935;
+}
