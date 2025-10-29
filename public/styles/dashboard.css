@@ -8,6 +8,14 @@ main {
     justify-content: center;
 }
 
+.prioridadeAlta {
+    height: 52vh;
+}
+
+.prioridadeMedia {
+    height: 35vh;
+}
+
 .prioridadeAlta img, .alarmes {
     width: 58em;
     padding: 0 4px;
@@ -26,14 +34,19 @@ main {
 .alarmes {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: #3f3d3d;
+    overflow: auto;
+}
+
+.tituloAlarmes {
+    align-self: flex-start;
+    position: sticky;
 }
 
 .alarme {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-self: center;
     width: 97%;
     background-color: #E03838;
     padding: 4px 10px;
