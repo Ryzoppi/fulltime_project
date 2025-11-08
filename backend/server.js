@@ -28,9 +28,9 @@ db.connect(err => {
 //Define pasta "public" para arquivos estáticos (HTML, CSS, JS, imagens, etc.)
 app.use(express.static(path.join(__dirname, "../public")));
 
-//Rota principal recebe gerenciamento.html automaticamente
+//Rota principal recebe login.html automaticamente
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/gerenciamento.html"));
+  res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
 app.get('/usuarios', (req, res) => {
