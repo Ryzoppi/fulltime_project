@@ -1,36 +1,26 @@
 const express = require("express");
-const mysql = require("mysql2");
 const path = require("path");
 
 const app = express();
 const port = 3000;
 
-//Configuração do banco
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "projetofulltime"
-});
-
-//Testa a conexão
-db.connect(err => {
-  if (err) {
-    console.error("Erro ao conectar no MySQL:", err);
-    return;
-  }
-  console.log("Conectado ao MySQL!");
-});
-
-//Define pasta "public" para arquivos estáticos (HTML, CSS, JS, imagens, etc.)
+// Middlewares
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 
-//Rota principal recebe login.html automaticamente
+// Rotas importadas
+const usuariosRoutes = require("./routes/usuarios");
+const perfisRoutes = require("./routes/perfis");
+
+app.use("/api/usuarios", usuariosRoutes);
+app.use("/api/perfis", perfisRoutes);
+
+// Rota principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
-//Inicia o servidor
+// Inicializa servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
