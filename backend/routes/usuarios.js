@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);
     const sql = "INSERT INTO Usuarios (nome, email, senha, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?)";
-    const params = [nome, email, senhaCriptografada, empresa_id, perfil_id || null];
+    const params = [nome, email, senhaCriptografada, empresa_id, perfil_id];
 
     db.query(sql, params, (erro, resultado) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PUT /api/usuarios
+// PUT /api/usuarios/:id
 router.put("/:id", async (req, res) => {
   const { id } = req.params
   const { nome, empresa_id, perfil_id } = req.body;

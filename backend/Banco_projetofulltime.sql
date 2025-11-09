@@ -13,9 +13,9 @@ CREATE TABLE Permissoes (
 );
 
 CREATE TABLE Perfis_Permissoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     perfil_id INT NOT NULL,
     permissao_id INT NOT NULL,
-    PRIMARY KEY (perfil_id, permissao_id),
     FOREIGN KEY (perfil_id) REFERENCES Perfis(id)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (permissao_id) REFERENCES Permissoes(id)

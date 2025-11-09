@@ -3,9 +3,9 @@ const db = require("../db");
 
 const router = express.Router();
 
-// GET /api/permissoes
+// GET /api/dispositivos
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM Permissoes";
+  const sql = "SELECT * FROM Dispositivos";
 
   db.query(sql, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
   });
 });
 
-// GET /api/permissoes/:id
+// GET /api/dispositivos/:id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  const sql = "SELECT * FROM Permissoes WHERE id = ?";
+  const sql = "SELECT * FROM Dispositivos WHERE id = ?";
   const params = [id]
 
   db.query(sql, params, (erro, resultados) => {
@@ -26,47 +26,47 @@ router.get("/:id", (req, res) => {
   });
 });
 
-// POST /api/permissoes
+// POST /api/dispositivos
 router.post("/", async (req, res) => {
-  const { nome, prioridade } = req.body;
+  const { nome, tipo, empresa_id } = req.body;
 
-  if (!nome || !prioridade) {
+  if (!nome || !tipo || !empresa_id) {
     return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
-  const sql = "INSERT INTO Permissoes (nome, prioridade) VALUES (?, ?)";
-  const params = [nome, prioridade];
+  const sql = "INSERT INTO Dispositivos (nome, tipo, empresa_id) VALUES (?, ?, ?)";
+  const params = [nome, tipo, empresa_id];
 
   db.query(sql, params, (erro, resultado) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-    res.json({ mensagem: "Permissão criada com sucesso!", id: resultado.insertId });
+    res.json({ mensagem: "Dispositivo criado com sucesso!", id: resultado.insertId });
   });
 });
 
-// PUT /api/permissoes/:id
-router.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { nome, prioridade } = req.body;
+// PUT /api/dispositivos/:id
+router.put("/:id", async (req, res) => {
+  const { id } = req.params
+  const { nome, tipo } = req.body;
 
-  const sql = "UPDATE Permissoes SET nome = ?, prioridade = ? WHERE id = ?";
-  const params = [nome, prioridade, id];
+  const sql = "UPDATE Dispositivos SET nome = ?, tipo = ? WHERE id = ?";
+  const params = [nome, tipo, id];
 
   db.query(sql, params, (erro) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Permissão atualizada com sucesso!" });
+      res.json({ mensagem: "Dispositivo atualizado com sucesso!" });
   });
 });
 
-// DELETE /api/permissoes
+// DELETE /api/dispositivos
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
-  const sql = "DELETE FROM Permissoes WHERE id = ?";
+  const sql = "DELETE FROM Dispositivos WHERE id = ?";
   const params = [id];
 
   db.query(sql, params, (erro) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Permissão excluido com sucesso!" });
+      res.json({ mensagem: "Dispositivo excluido com sucesso!" });
   });
 });
 
