@@ -1,5 +1,6 @@
-const express = require("express");
-const db = require("../db");
+import express from 'express'
+
+import db from '../db.js'
 
 const router = express.Router();
 
@@ -11,13 +12,14 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
-const sql = "INSERT INTO Perfis_Permissoes (permissao_id, perfil_id) VALUES (?, ?)";
-const params = [permissao_id, perfil_id];
+  const sql = "INSERT INTO Perfis_Permissoes (permissao_id, perfil_id) VALUES (?, ?)";
+  const params = [permissao_id, perfil_id];
 
-db.query(sql, params, (erro, resultado) => {
+  db.query(sql, params, (erro, resultado) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
     res.json({ mensagem: "Perfil vinculado a permissão com sucesso!", id: resultado.insertId });
-});
+  });
 });
 
 // DELETE /api/perfis_permissoes
@@ -28,9 +30,10 @@ router.delete("/:id", async (req, res) => {
   const params = [id];
 
   db.query(sql, params, (erro) => {
-      if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Vínculo de perfil e permissão excluido com sucesso!" });
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
+    res.json({ mensagem: "Vínculo de perfil e permissão excluido com sucesso!" });
   });
 });
 
-module.exports = router;
+export default router

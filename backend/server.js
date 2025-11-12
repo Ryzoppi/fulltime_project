@@ -1,29 +1,35 @@
-const express = require("express");
-const path = require("path");
+import express from "express"
+import path from "path"
+import { fileURLToPath } from "url"
+
+import { 
+  dispositivos, 
+  empresas, 
+  logsDeAtividade, 
+  perfis, 
+  perfisPermissoes, 
+  permissoes, 
+  usuarios 
+} from './routes/index.js'
 
 const app = express();
 const port = 3000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middlewares
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Rotas importadas
-const usuariosRoutes = require("./routes/usuarios");
-const perfisRoutes = require("./routes/perfis");
-const permissoesRoutes = require("./routes/permissoes");
-const perfisPermissoesRoutes = require("./routes/perfisPermissoes");
-const empresasRoutes = require("./routes/empresas");
-const dispositivosRoutes = require("./routes/dispositivos");
-const logsDeAtividadeRoutes = require("./routes/logsDeAtividade");
-
-app.use("/api/usuarios", usuariosRoutes);
-app.use("/api/perfis", perfisRoutes);
-app.use("/api/permissoes", permissoesRoutes);
-app.use("/api/perfis_permissoes", perfisPermissoesRoutes);
-app.use("/api/empresas", empresasRoutes);
-app.use("/api/dispositivos", dispositivosRoutes);
-app.use("/api/logs_de_atividade", logsDeAtividadeRoutes);
+// Rotas
+app.use("/api/dispositivos", dispositivos);
+app.use("/api/empresas", empresas);
+app.use("/api/logs_de_atividade", logsDeAtividade);
+app.use("/api/perfis_permissoes", perfisPermissoes);
+app.use("/api/perfis", perfis);
+app.use("/api/permissoes", permissoes);
+app.use("/api/usuarios", usuarios);
 
 // Rota principal
 app.get("/", (req, res) => {

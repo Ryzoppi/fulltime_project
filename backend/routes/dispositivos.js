@@ -1,5 +1,6 @@
-const express = require("express");
-const db = require("../db");
+import express from 'express'
+
+import db from '../db.js'
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ router.get("/", (req, res) => {
 
   db.query(sql, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+
     res.json(resultados);
   });
 });
@@ -22,6 +24,7 @@ router.get("/:id", (req, res) => {
 
   db.query(sql, params, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+
     res.json(resultados);
   });
 });
@@ -39,6 +42,7 @@ router.post("/", async (req, res) => {
 
   db.query(sql, params, (erro, resultado) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+
     res.json({ mensagem: "Dispositivo criado com sucesso!", id: resultado.insertId });
   });
 });
@@ -52,8 +56,9 @@ router.put("/:id", async (req, res) => {
   const params = [nome, tipo, id];
 
   db.query(sql, params, (erro) => {
-      if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Dispositivo atualizado com sucesso!" });
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
+    res.json({ mensagem: "Dispositivo atualizado com sucesso!" });
   });
 });
 
@@ -65,9 +70,10 @@ router.delete("/:id", async (req, res) => {
   const params = [id];
 
   db.query(sql, params, (erro) => {
-      if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Dispositivo excluido com sucesso!" });
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
+    res.json({ mensagem: "Dispositivo excluido com sucesso!" });
   });
 });
 
-module.exports = router;
+export default router
