@@ -1,5 +1,6 @@
-const express = require("express");
-const db = require("../db");
+import express from 'express'
+
+import db from '../db.js'
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ router.get("/", (req, res) => {
 
   db.query(sql, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
     res.json(resultados);
   });
 });
@@ -22,13 +24,14 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
-const sql = "INSERT INTO Logs_de_Atividade (usuario_id, dispositivo_id, tipo, data) VALUES (?, ?, ?, ?)";
-const params = [usuario_id, dispositivo_id, tipo, data];
+  const sql = "INSERT INTO Logs_de_Atividade (usuario_id, dispositivo_id, tipo, data) VALUES (?, ?, ?, ?)";
+  const params = [usuario_id, dispositivo_id, tipo, data];
 
-db.query(sql, params, (erro, resultado) => {
+  db.query(sql, params, (erro, resultado) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    
     res.json({ mensagem: "Log criado com sucesso!", id: resultado.insertId });
-});
+  });
 });
 
-module.exports = router;
+export default router

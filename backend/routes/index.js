@@ -1,0 +1,7 @@
+export { default as dispositivos } from './dispositivos.js'
+export { default as empresas } from './empresas.js'
+export { default as logsDeAtividade } from './logsDeAtividade.js'
+export { default as perfis } from './perfis.js'
+export { default as perfisPermissoes } from './perfisPermissoes.js'
+export { default as permissoes } from './permissoes.js'
+export { default as usuarios } from './usuarios.js'

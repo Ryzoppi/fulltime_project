@@ -1,6 +1,7 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
-const db = require("../db");
+import express from 'express'
+import bcrypt from 'bcrypt'
+
+import db from '../db.js'
 
 const router = express.Router();
 
@@ -76,4 +77,4 @@ router.delete("/:id", async (req, res) => {
   });
 });
 
-module.exports = router;
+export default router
