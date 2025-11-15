@@ -64,7 +64,7 @@ router.put("/:id", async (req, res) => {
   });
 });
 
-// DELETE /api/usuarios
+// DELETE /api/usuarios/:id
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
