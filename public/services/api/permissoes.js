@@ -2,7 +2,7 @@ import { url } from "../env.js"
 
 const get = async ({ id }) => {
   try {
-    const response = await fetch(`${url}/usuarios/${id}`);
+    const response = await fetch(`${url}/permissoes/${id}`);
     
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
@@ -15,21 +15,9 @@ const get = async ({ id }) => {
   }
 }
 
-const auth = async ({ ...data }) => {
-  const response = await fetch(`${url}/usuarios/auth`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) 
-  });
-
-  return { status: response.status };
-}
-
 const create = async ({ ...data }) => {
   try {
-    const response = await fetch(`${url}/usuarios`, {
+    const response = await fetch(`${url}/permissoes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -51,7 +39,7 @@ const create = async ({ ...data }) => {
 
 const update = async ({ id, ...data }) => {
   try {
-    const response = await fetch(`${url}/usuarios/${id}`, {
+    const response = await fetch(`${url}/permissoes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -73,7 +61,7 @@ const update = async ({ id, ...data }) => {
 
 const destroy = async ({ id }) => {
   try {
-    const response = await fetch(`${url}/usuarios/${id}`, { method: 'DELETE' })
+    const response = await fetch(`${url}/permissoes/${id}`, { method: 'DELETE' })
     
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
@@ -87,4 +75,4 @@ const destroy = async ({ id }) => {
   }
 }
 
-export default { get, auth, create, update, destroy }
+export default { get, create, update, destroy }

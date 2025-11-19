@@ -28,6 +28,31 @@ router.get("/:id", (req, res) => {
   });
 });
 
+// POST /api/usuarios/auth
+router.post("/auth", (req, res) => {
+  const { email, senha } = req.body;
+
+  const sql = "SELECT * FROM Usuarios WHERE email = ?";
+  const params = [email]
+
+  db.query(sql, params, async (erro, resultados) => {
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+
+    if (resultados.length === 0) {
+      return res.status(401).json({ status: 401, mensagem: "Credenciais inválidas" }); 
+    }
+
+    const usuario = resultados[0]
+    const match = await bcrypt.compare(senha, usuario.senha)
+
+    if (match) {
+      return res.status(200).json({ status: 200, mensagem: "Login bem-sucedido" });
+    } else {
+      return res.status(401).json({ status: 401, mensagem: "Credenciais inválidas" }); 
+    }
+  });
+});
+
 // POST /api/usuarios
 router.post("/", async (req, res) => {
   const { nome, email, senha, empresa_id, perfil_id } = req.body;
