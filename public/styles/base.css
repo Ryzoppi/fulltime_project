@@ -20,6 +20,14 @@ header {
     padding: 16px 0;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    background-color: #261C1C;
+    margin: 24px 0 0 0;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;

@@ -6,7 +6,13 @@ const router = express.Router();
 
 // GET /api/permissoes
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM Permissoes";
+  const sql = `
+    SELECT pe.nome as nomePermissao, pe.prioridade, pf.nome as nomePerfil
+    FROM Permissoes pe
+    LEFT JOIN Perfis_Permissoes pp ON pp.permissao_id = pe.id
+    LEFT JOIN Perfis pf ON pp.perfil_id = pf.id
+    ORDER BY pf.id DESC;
+  `;
 
   db.query(sql, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });

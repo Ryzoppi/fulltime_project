@@ -2,75 +2,73 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Configurações de Gerenciamento</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/config.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
-    <title>Configurações</title>
+  <meta charset="UTF-8">
+  <title>Configurações de Gerenciamento</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/config.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+  <title>Configurações</title>
 </head>
 
 <body>
-    <!-- Cabeçalho -->
-    <header id="cabecalho">
-        <nav class="navbar">
-            <a href="dashboard.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"></a>
-            <div class="nav-links">
-                <a href="dashboard.html" id="linkDashboard">Dashboard</a>
-                <!-- <a href="cameras.html" id="linkCameras">Câmeras</a>
-                <a href="alarmes.html" id="linkAlarmes">Alarmes</a> -->
-                <a href="config.html" id="linkConfig" class="active">Configurações</a>
-                <a href="gerenciamento.html" id="linkGerenciamento">Gerenciamento</a>
-            </div>
-        </nav>
-    </header>
+  <!-- Cabeçalho -->
+  <header id="cabecalho">
+    <nav class="navbar">
+      <a href="dashboard.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"></a>
+      <div class="nav-links">
+        <a href="dashboard.html" id="linkDashboard">Dashboard</a>
+        <a href="config.html" id="linkConfig" class="active">Configurações</a>
+        <a href="gerenciamento.html" id="linkGerenciamento">Gerenciamento</a>
+      </div>
+    </nav>
+  </header>
 
-    <main class="container">
-        <h1>Configurações</h1>
-        
-        <section class="active-preset-section">
-            <h2>Preset ativo</h2>
-            <div class="active-preset-container">
-                <div class="preset-preview">
-                    <img src="https://i.imgur.com/3a1ac8.png" alt="Preview do layout do dashboard" style="width: 300px; object-fit: contain; border-radius: 8px;">
-                </div>
-                <div class="preset-details">
-                    <h3>Default Layout</h3>
-                    <p>lorem dijaslkjdklasndjkasnjkldnaslkdnaskldnaslkdnaskjndkasndjkasndjkasndkasnaskjlkdjsanlkdnasndklasndjkasnldkjsanlkdnaslkdasaskjlkdjsanlkdnsandnasdkas djsa djkals djkalsjkdasd n da dmmaskldmsal</p>
-                    <div class="action-buttons">
-                        <button class="btn btn-secondary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <main class="container">
+    <h1>Configurações</h1>
+    
+    <section class="active-preset-section">
+      <h2>Preset ativo</h2>
+      <div class="active-preset-container">
+        <div class="preset-preview">
+          <img src="https://i.imgur.com/3a1ac8.png" alt="Preview do layout do dashboard" style="width: 300px; object-fit: contain; border-radius: 8px;">
+        </div>
+        <div class="preset-details">
+          <h3>Default Layout</h3>
+          <p>lorem dijaslkjdklasndjkasnjkldnaslkdnaskldnaslkdnaskjndkasndjkasndjkasndkasnaskjlkdjsanlkdnasndklasndjkasnldkjsanlkdnaslkdasaskjlkdjsanlkdnsandnasdkas djsa djkals djkalsjkdasd n da dmmaskldmsal</p>
+          <div class="action-buttons">
+            <button class="btn btn-secondary">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="available-presets-section">
-            <h2>Presets disponíveis</h2>
-            <div class="presets-grid">
-                <div class="preset-card">
-                    <div class="preset-thumbnail"></div>
-                    <p>Prioridade Câmera</p>
-                </div>
-                <div class="preset-card">
-                    <div class="preset-thumbnail"></div>
-                    <p>Prioridade Alarme</p>
-                </div>
-                <div class="preset-card">
-                    <div class="preset-thumbnail"></div>
-                    <p>Custom Layout 1</p>
-                </div>
-            </div>
-        </section>
+    <section class="available-presets-section">
+      <h2>Presets disponíveis</h2>
+      <div class="presets-grid">
+        <div class="preset-card">
+          <div class="preset-thumbnail"></div>
+          <p>Prioridade Câmera</p>
+        </div>
+        <div class="preset-card">
+          <div class="preset-thumbnail"></div>
+          <p>Prioridade Alarme</p>
+        </div>
+        <div class="preset-card">
+          <div class="preset-thumbnail"></div>
+          <p>Custom Layout 1</p>
+        </div>
+      </div>
+    </section>
 
-        <footer class="main-footer">
-            <button class="btn btn-primary">Create new preset</button>
-            <button class="btn btn-success">Save Changes</button>
-        </footer>
-    </main>
+    <footer class="main-footer">
+      <button class="btn btn-primary">Create new preset</button>
+      <button class="btn btn-success">Save Changes</button>
+    </footer>
+  </main>
 
-    <script type="module" src="./scripts/config.js"></script>
+  <script type="module" src="./scripts/config.js"></script>
 </body>
 
 </html>

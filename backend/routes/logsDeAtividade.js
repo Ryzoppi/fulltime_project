@@ -6,10 +6,19 @@ const router = express.Router();
 
 // GET /api/logs_de_atividade
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM Logs_de_Atividade";
+  const sql = `
+    SELECT l.id, l.data, l.tipo, u.nome AS nomeUsuario, d.nome AS nomeDispositivo
+    FROM Logs_de_Atividade l
+    LEFT JOIN Usuarios u ON l.usuario_id = u.id
+    LEFT JOIN Dispositivos d ON l.dispositivo_id = d.id
+    ORDER BY l.data DESC;
+  `;
 
   db.query(sql, (erro, resultados) => {
-    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    if (erro) {
+      console.error("Erro na consulta SQL:", erro);
+      return res.status(500).json({ erro: erro.sqlMessage });
+    }
     
     res.json(resultados);
   });
