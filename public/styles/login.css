@@ -12,7 +12,7 @@ main {
     padding: 4px
 }
 
-.login-container {
+#login-container {
     width: 300px;
     height: auto;
     display: flex;
@@ -25,7 +25,7 @@ main {
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.form-container {
+#form-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -59,13 +59,13 @@ input {
   border-radius: 5px;
 }
 
-.logoLogin{
+#logoLogin{
     width: 120px;
     margin: 0;
     cursor: pointer;
 }
 
-.loginbtn {
+#loginBtn {
     width: 80%;
     padding: 10px;
     margin: 10px 20px auto 18px;

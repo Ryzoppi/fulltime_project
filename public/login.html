@@ -12,20 +12,22 @@
 
 <body>
     <main>
-        <div class="login-container">
-            <a href="login.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logoLogin"></a>
+        <div id="login-container">
+            <a href="login.html"><img src="assets/icon.png" alt="Logo da Fulltime" id="logoLogin"></a>
             <h1>Login</h1>
-            <div class="form-container">
-                <form action="#" method="post" class="login-form">
-                    <label for="username">Usuário:</label>
-                    <input type="text" id="username" name="username" required>
+            <div id="form-container">
+                <form action="#" id="login-form">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
                 
                     <label for="password">Senha:</label>
                     <input type="password" id="password" name="password" required>
                 
-                    <button type="submit" class="loginbtn">Login</button>
+                    <button id="loginBtn">Login</button>
                 </form>
             </div>
         </div>
     </main>
+
+    <script type="module" src="./scripts/login.js"></script>
 </body>

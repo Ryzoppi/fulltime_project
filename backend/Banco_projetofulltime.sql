@@ -87,9 +87,9 @@ INSERT INTO Empresas (nome, documento) VALUES
 ('InovaCorp SA', '98765432000155');
 
 INSERT INTO Usuarios (nome, email, senha, empresa_id, perfil_id) VALUES
-('João Silva', 'joao@tech.com', 'senha123', 1, 1),
-('Maria Souza', 'maria@tech.com', 'senha123', 1, 2),
-('Carlos Lima', 'carlos@inova.com', 'senha123', 2, 3);
+('João Silva', 'joao@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 1),
+('Maria Souza', 'maria@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 2),
+('Carlos Lima', 'carlos@inova.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 2, 3);
 
 INSERT INTO Dispositivos (nome, tipo, empresa_id) VALUES
 ('Servidor Principal', 'Servidor', 1),
