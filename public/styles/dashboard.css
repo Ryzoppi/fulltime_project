@@ -53,11 +53,3 @@ main {
     border-radius: 2px;
     margin-bottom: 4px;
 }
-
-footer {
-    display: flex;
-    justify-content: center;
-    padding: 12px;
-    background-color: #261C1C;
-    margin: 24px 0 0 0;
-}

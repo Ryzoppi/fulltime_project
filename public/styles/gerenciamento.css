@@ -1,25 +1,34 @@
-.boxEscura {
-    background: #201f1f;
-    border: 1px solid #201f1f;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
+.tabelaLog {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px; 
+  overflow: hidden;
+  border: 1px solid #201f1f;
 }
 
-.boxClara {
-    background: #2b2a2b;
-    border: 1px solid #2b2a2b;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
+.tabelaLog thead tr {
+  background: #201f1f;
+  color: #fff;
+}
+
+.tabelaLog th {
+  padding: 16px;
+  text-align: center;
+}
+
+.tabelaLog tbody tr {
+  background: #2b2a2b;
+  color: #fff;
+}
+
+.tabelaLog td {
+  padding: 16px;
+  border-top: 1px solid #201f1f;
+  text-align: center;
+}
+
+.tabelaLog tbody tr:last-child {
+  border-bottom: none;
 }
 
 
