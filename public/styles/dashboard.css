@@ -53,3 +53,23 @@ main {
     border-radius: 2px;
     margin-bottom: 4px;
 }
+
+#logout {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 15px; 
+  background-color: #523D3D;
+}
+
+#logout:hover {
+  background-color: #D42A2A;
+  color: white; 
+  cursor: pointer;
+}
