@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     preencheTabelaPermissoes()
 })
 
+document.getElementById('logout').addEventListener('click', () => authenticate.logout())
+
 const preencheTabelaLogs = async () => {
 	const dados = await services.api.logsDeAtividade.get({ id: '' });
 	const tbody = document.getElementById("conteudoLogs");
