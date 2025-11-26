@@ -67,58 +67,67 @@ function aplicarLayoutGlobal(layout) {
     return;
   }
 
-    // o layout salvo no banco
-    const layout = user.layout ?? 0;
-    
-    await carregarDashboard();
+  // ----------------------------
+  // LAYOUT 2 → ALARMES EM CIMA
+  // ----------------------------
+  if (layout === 2) {
+    secoes[0].querySelector(".grupo").appendChild(alarmes[0]);
+    secoes[1].querySelector(".grupo").appendChild(alarmes[1]);
+    secoes[2].querySelector(".grupo").appendChild(alarmes[2]);
 
-    // aplica o layout cru
-    aplicarLayout(layout);
-
-  /* -------------------------
-     AQUI ESTÁ O CÓDIGO CORRETO
-  ----------------------------*/
-  function aplicarLayout(layout) {
-    const alta = document.querySelector(".prioridadeAlta");
-    const media = document.querySelector(".prioridadeMedia");
-  
-    moverInterno(alta, layout);
-    moverInterno(media, layout);
+    secoes[0].querySelector(".grupo").appendChild(cameras[0]);
+    secoes[1].querySelector(".grupo").appendChild(cameras[1]);
+    secoes[2].querySelector(".grupo").appendChild(cameras[2]);
+    return;
   }
-  
-  function moverInterno(container, layout) {
-    if (!container) return;
-  
-    const cameras = [...container.querySelectorAll("img")];
-    const alarmes = container.querySelector(".alarmes");
-  
-    container.innerHTML = "";
-  
-    switch (layout) {
-      case 1: // CÂMERAS PRIMEIRO
-        cameras.forEach(cam => container.appendChild(cam));
-        container.appendChild(alarmes);
-        break;
-    
-      case 2: // ALARMES PRIMEIRO
-        container.appendChild(alarmes);
-        cameras.forEach(cam => container.appendChild(cam));
-        break;
-    
-      default:
-        // padrão
-        container.appendChild(cameras[0]);
-        container.appendChild(alarmes);
-        cameras.slice(1).forEach(cam => container.appendChild(cam));
-    }
 
-    if (alarmes) {
-      alarmes.classList.remove("prioridade-1", "prioridade-2", "prioridade-3");
-      alarmes.classList.add(`prioridade-${grupo.prioAlm}`);
-      alarmes.style.order = grupo.prioAlm;
-    }
-  });
+  // ----------------------------
+  // LAYOUT 3 → DEFAULT
+  // ----------------------------
+  secoes[0].querySelector(".grupo").appendChild(cameras[0]);
+  secoes[0].querySelector(".grupo").appendChild(alarmes[0]);
+
+  secoes[1].querySelector(".grupo").appendChild(cameras[1]);
+  secoes[1].querySelector(".grupo").appendChild(alarmes[1]);
+
+  secoes[2].querySelector(".grupo").appendChild(cameras[2]);
+  secoes[2].querySelector(".grupo").appendChild(alarmes[2]);
 }
 
+// Configuração de prioridades de câmera e alarme
+// 1 = topo, 2 = meio, 3 = baixo
+const prioridadeConfig = {
+  cameras: {
+    alta: 1,
+    media: 2,
+    baixa: 3,
+  },
+  alarmes: {
+    alta: 1,
+    media: 2,
+    baixa: 3,
+  }
+};
 
+// Função para aplicar classes e ordem
+function aplicarPrioridades() {
+  const grupos = [
+    { id: "Alta", prioCam: prioridadeConfig.cameras.alta, prioAlm: prioridadeConfig.alarmes.alta },
+    { id: "Media", prioCam: prioridadeConfig.cameras.media, prioAlm: prioridadeConfig.alarmes.media },
+    { id: "Baixa", prioCam: prioridadeConfig.cameras.baixa, prioAlm: prioridadeConfig.alarmes.baixa },
+  ];
 
+  grupos.forEach(grupo => {
+    const cameras = document.getElementById(`cameras${grupo.id}`);
+    const alarmes = document.getElementById(`alarmes${grupo.id}`);
+
+    if (cameras) {
+      cameras.classList.remove("prioridade-1", "prioridade-2", "prioridade-3");
+      cameras.classList.add(`prioridade-${grupo.prioCam}`);
+      cameras.style.order = grupo.prioCam;
+    }
+  });
+
+  document.getElementById('logout')
+    .addEventListener('click', () => authenticate.logout());
+};
