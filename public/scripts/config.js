@@ -3,6 +3,10 @@ import authenticate from "./authenticate.js"
 document.addEventListener('DOMContentLoaded', () => {
   authenticate.validateAuth()
 
+  if (authenticate.isAdm()) {
+    document.getElementById('linkGerenciamento').style.display = 'block'
+  }
+
   const buttons = document.querySelectorAll('.btn'); 
   buttons.forEach(button => {
     button.addEventListener('click', () => {

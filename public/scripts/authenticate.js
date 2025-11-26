@@ -1,9 +1,8 @@
 import services from '../services/index.js'
-import { auth } from '../constants'
+import { auth } from '../constants/index.js'
 
 const login = async ({ email, senha }) => {
   loginAsAdm({ email, senha })
-  if (localStorage.getItem('keyToken')) return
 
   const response = await services.api.usuarios.auth({ email, senha })
 
@@ -33,6 +32,8 @@ const isAuthenticated = () => {
   return !!userToken;
 }
 
+const isAdm = () => localStorage.getItem('keyToken') === auth.ADM_TOKEN
+
 
 const validateAuth = () => {
   if (!isAuthenticated()) {
@@ -40,4 +41,4 @@ const validateAuth = () => {
   }
 }
 
-export default { login, logout, isAuthenticated, validateAuth }
+export default { login, logout, isAuthenticated, isAdm, validateAuth }

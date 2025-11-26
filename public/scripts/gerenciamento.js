@@ -5,6 +5,10 @@ import authenticate from "./authenticate.js"
 document.addEventListener('DOMContentLoaded', () => {
 		authenticate.validateAuth()
 
+    if (authenticate.isAdm()) {
+      document.getElementById('linkGerenciamento').style.display = 'block'
+    }
+
 		preencheTabelaLogs()
     preencheTabelaPermissoes()
 })
