@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         cameras.slice(1).forEach(cam => container.appendChild(cam));
     }
   }
-
-  document.getElementById('logout')
-    .addEventListener('click', () => authenticate.logout());
 });
+
+document.getElementById('logout').addEventListener('click', () => authenticate.logout());

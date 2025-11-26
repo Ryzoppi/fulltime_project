@@ -7,11 +7,9 @@ const router = express.Router();
 // GET /api/permissoes
 router.get("/", (req, res) => {
   const sql = `
-    SELECT pe.nome as nomePermissao, pe.prioridade, pf.nome as nomePerfil
+    SELECT pe.id, pe.nome, pe.prioridade
     FROM Permissoes pe
-    LEFT JOIN Perfis_Permissoes pp ON pp.permissao_id = pe.id
-    LEFT JOIN Perfis pf ON pp.perfil_id = pf.id
-    ORDER BY pf.id DESC;
+    ORDER BY pe.id ASC;
   `;
 
   db.query(sql, (erro, resultados) => {

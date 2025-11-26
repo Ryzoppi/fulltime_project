@@ -1,61 +1,223 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/gerenciamento.css">
-  <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
-  <title>Painel de Administração</title>
-</head>
-<body>
-  <!-- Cabeçalho -->
-  <header id="cabecalho">
-    <nav class="navbar">
-      <a href="dashboard.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"></a>
-      <div class="nav-links">
-        <a href="dashboard.html" id="linkDashboard">Dashboard</a>
-        <a href="config.html" id="linkConfig">Configurações</a>
-        <a href="gerenciamento.html" id="linkGerenciamento" class="active">Gerenciamento</a>
-      </div>
-      <a href="#" id="logout">Sair</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/gerenciamento.css" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <title>Painel de Administração</title>
+  </head>
+  <body>
+    <header id="cabecalho">
+      <nav class="navbar">
+        <a href="dashboard.html"
+          ><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"
+        /></a>
 
-  <main>
-    <h1>Gerenciamento</h1>
+        <div class="nav-links">
+          <a href="dashboard.html" id="linkDashboard">Dashboard</a>
+          <a href="config.html" id="linkConfig">Configurações</a>
+          <a href="gerenciamento.html" id="linkGerenciamento" class="active"
+            >Gerenciamento</a
+          >
+        </div>
+        <a href="#" id="logout">Sair</a>
+      </nav>
+    </header>
 
-    <h3>Logs de Atividades</h3>
-    <table class="tabelaLog">
-      <thead>
-        <tr>
-          <th>DATA/HORA</th>
-          <th>TIPO DE EVENTO</th>
-          <th>DISPOSITIVO</th>
-          <th>USUÁRIO</th>
-        </tr>
-      </thead>
-      <tbody id="conteudoLogs">
-      </tbody>
-    </table>
+    <main>
+      <h1>Gerenciamento</h1>
 
-    <h3>Gerenciar permissões</h3>
-    <table class="tabelaLog">
-      <thead>
-        <tr>
-          <th>PERFIL</th>
-          <th>PERMISSÃO</th>
-          <th>PRIORIDADE</th>
-        </tr>
-      </thead>
-      <tbody id="conteudoPermissoes">
-      </tbody>
-    </table>
-  </main>
+      <h3>Logs de Atividades</h3>
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>DISPOSITIVO</th>
+            <th>USUÁRIO</th>
+            <th>TIPO DE EVENTO</th>
+            <th>DATA/HORA</th>
+          </tr>
+        </thead>
 
-  <footer>
-    <p>&copy; 2025 - Fábrica de Projetos</p>
-  </footer>
+        <tbody id="conteudoLogs"></tbody>
+      </table>
 
-  <script type="module" src="./scripts/gerenciamento.js"></script>
-</body>
+      <h3>Empresa</h3>
+
+      <form id="cadastroEmpresaForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nomeEmpresa" name="nome" required />
+
+        <label for="documento">Documento:</label>
+        <input
+          type="text"
+          id="documento"
+          name="documento"
+          pattern="^(\d{11}|\d{14})$"
+          title="Deve ter 11 dígitos (CPF) ou 14 dígitos (CNPJ), somente números."
+          required
+        />
+
+        <button type="submit">Criar Empresa</button>
+      </form>
+
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>DOCUMENTO</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+
+        <tbody id="conteudoEmpresas"></tbody>
+      </table>
+
+      <h3>Gerenciar Permissões</h3>
+      <form id="cadastroPermissaoForm">
+        <label for="nome">Nome (Ação Permitida):</label>
+        <input type="text" id="nomePermissao" name="nome" required />
+
+        <label for="prioridade">Prioridade:</label>
+        <input type="number" id="prioridade" name="prioridade" required />
+
+        <button type="submit">Criar Permissão</button>
+      </form>
+
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>PRIORIDADE</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+
+        <tbody id="conteudoPermissoes"></tbody>
+      </table>
+
+      <h3>Gerenciar Perfis</h3>
+      <form id="cadastroPerfilForm">
+        <label for="nome">Nome do Perfil:</label>
+        <input type="text" id="nomePerfil" name="nome" required />
+
+        <label for="permissoesPerfil"
+          >Permissões (IDs separados por vírgula):</label
+        >
+        <input type="text" id="permissoesPerfil" name="permissoesPerfil" />
+
+        <button type="submit">Criar Perfil</button>
+      </form>
+
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>PERMISSÕES</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+
+        <tbody id="conteudoPerfis"></tbody>
+      </table>
+
+      <h3>Usuário</h3>
+      <form id="cadastroUsuarioForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nomeUsuario" name="nome" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="emailUsuario" name="email" required />
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senhaUsuario" name="senha" required />
+
+        <select id="layout" name="layout" required>
+          <option value="" disabled selected>-- Escolha um layout --</option>
+          <option value="1">Prioridade Câmera</option>
+          <option value="2">Prioridade Alarme</option>
+          <option value="3">Layout Padrão</option>
+        </select>
+
+        <label for="empresaId">Empresa (ID):</label>
+        <input
+          type="text"
+          id="empresaUsuario"
+          name="empresaId"
+          placeholder="ID da Empresa"
+          required
+        />
+
+        <label for="perfilId">Perfil (ID):</label>
+        <input
+          type="text"
+          id="perfilUsuario"
+          name="perfilId"
+          placeholder="ID do Perfil"
+          required
+        />
+
+        <button type="submit">Criar Usuário</button>
+      </form>
+
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>EMAIL</th>
+            <th>EMPRESA</th>
+            <th>PERFIL</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+
+        <tbody id="conteudoUsuarios"></tbody>
+      </table>
+
+      <h3>Dispositivo</h3>
+      <form id="cadastroDispositivoForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nomeDispositivo" name="nome" required />
+
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipoDispositivo" name="tipo" required />
+
+        <label for="empresaId">Empresa (ID):</label>
+        <input
+          type="text"
+          id="empresaDispositivo"
+          name="empresaId"
+          placeholder="ID da Empresa"
+          required
+        />
+
+        <button type="submit">Criar Dispositivo</button>
+      </form>
+
+      <table class="tabelaLog">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>TIPO</th>
+            <th>EMPRESA</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+
+        <tbody id="conteudoDispositivos"></tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 - Fábrica de Projetos</p>
+    </footer>
+
+    <script type="module" src="./scripts/gerenciamento.js"></script>
+  </body>
 </html>
