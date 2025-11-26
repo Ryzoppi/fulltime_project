@@ -1,7 +1,7 @@
 .tabelaLog {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 8px; 
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid #201f1f;
 }
@@ -31,34 +31,103 @@
   border-bottom: none;
 }
 
-
-/* Responsividade básica */
-
-/* @media (max-width: 900px) {
-    main {
-        padding: 8px;
-    }
-    .boxEscura,
-    .boxClara {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 12px;
-        margin: 8px;
-    }
+form {
+  max-width: 45%;
+  padding: 20px;
+  background-color: #2b2a2b;
+  border: 1px solid #201f1f;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
 }
 
-@media (max-width: 600px) {
-    h1,
-    h3 {
-        font-size: 1.2em;
-    }
-    .boxEscura,
-    .boxClara {
-        font-size: 14px;
-        padding: 8px;
-    }
-    footer {
-        font-size: 13px;
-        text-align: center;
-    }
-} */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px 0;
+  display: inline-block;
+  background-color: #201f1f;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0 0 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #523d3d;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #d42a2a;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.btnExcluir {
+  width: 50%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #523d3d;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin: 0;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px 0;
+
+  display: inline-block;
+
+  background-color: #201f1f;
+  border: 1px solid #555;
+  color: #fff;
+
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4"><path fill="%23fff" d="M287 64.9c-4-4.2-10.4-4.2-14.5 0L146.2 191.7 19.9 64.9c-4-4.2-10.4-4.2-14.5 0-4 4.2-4 11 0 15.2l133 135.4c2 2 4.6 3.1 7.3 3.1s5.3-1.1 7.3-3.1l133-135.4c4-4.2 4-11 0-15.2z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 10px auto;
+
+  cursor: pointer;
+}
+
+
+select option {
+  background-color: #201f1f;
+  color: #fff;
+  padding: 10px;
+}
+
+select:focus {
+  border-color: #fff;
+  outline: none;
+}

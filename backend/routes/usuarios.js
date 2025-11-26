@@ -1,16 +1,27 @@
-import express from 'express'
-import bcrypt from 'bcrypt'
+import express from "express";
+import bcrypt from "bcrypt";
 
-import db from '../db.js'
+import db from "../db.js";
 
 const router = express.Router();
 
 // GET /api/usuarios
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM Usuarios";
+  const sql = `
+        SELECT u.id, u.nome, u.email,
+          e.nome AS nomeEmpresa,
+          p.nome AS nomePerfil
+        FROM Usuarios u
+        LEFT JOIN Empresas e ON u.empresa_id = e.id
+        LEFT JOIN Perfis p ON u.perfil_id = p.id
+        ORDER BY u.id;
+    `;
 
   db.query(sql, (erro, resultados) => {
-    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    if (erro) {
+      console.error("Erro ao buscar usuários:", erro);
+      return res.status(500).json({ erro: erro.sqlMessage });
+    }
     res.json(resultados);
   });
 });
@@ -20,7 +31,7 @@ router.get("/:id", (req, res) => {
   const { id } = req.params;
 
   const sql = "SELECT * FROM Usuarios WHERE id = ?";
-  const params = [id]
+  const params = [id];
 
   db.query(sql, params, (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
@@ -33,42 +44,63 @@ router.post("/auth", (req, res) => {
   const { email, senha } = req.body;
 
   const sql = "SELECT * FROM Usuarios WHERE email = ?";
-  const params = [email]
+  const params = [email];
 
   db.query(sql, params, async (erro, resultados) => {
     if (erro) return res.status(500).json({ erro: erro.sqlMessage });
 
     if (resultados.length === 0) {
-      return res.status(401).json({ status: 401, mensagem: "Credenciais inválidas" }); 
+      return res
+        .status(401)
+        .json({ status: 401, mensagem: "Credenciais inválidas" });
     }
 
-    const usuario = resultados[0]
-    const match = await bcrypt.compare(senha, usuario.senha)
+    const usuario = resultados[0];
+    const match = await bcrypt.compare(senha, usuario.senha);
 
     if (match) {
-      return res.status(200).json({ status: 200, mensagem: "Login bem-sucedido", userId: usuario.id });
+      return res.status(200).json({
+        status: 200,
+        mensagem: "Login bem-sucedido",
+        userId: usuario.id,
+      });
     } else {
-      return res.status(401).json({ status: 401, mensagem: "Credenciais inválidas" }); 
+      return res
+        .status(401)
+        .json({ status: 401, mensagem: "Credenciais inválidas" });
     }
   });
 });
 
 // POST /api/usuarios
 router.post("/", async (req, res) => {
-  const { nome, email, senha, layout, empresa_id, perfil_id } = req.body;
+  const { nome, email, senha, layout, empresaId, perfilId } = req.body;
 
-  if (!nome || !email || !senha || !layout || !empresa_id || !perfil_id) {
-    return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
+  if (!nome || !email || !senha || !layout || !empresaId || !perfilId) {
+    return res
+      .status(400)
+      .json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);
-    const sql = "INSERT INTO Usuarios (nome, email, senha, layout, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?, ?)";
-    const params = [nome, email, senhaCriptografada, layout, empresa_id, perfil_id];
+    const sql =
+      "INSERT INTO Usuarios (nome, email, senha, layout, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?, ?)";
+    const params = [
+      nome,
+      email,
+      senhaCriptografada,
+      layout,
+      empresaId,
+      perfilId,
+    ];
 
     db.query(sql, params, (erro, resultado) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Usuário criado com sucesso!", id: resultado.insertId });
+      res.json({
+        mensagem: "Usuário criado com sucesso!",
+        id: resultado.insertId,
+      });
     });
   } catch (e) {
     res.status(500).json({ erro: "Erro ao processar a senha." });
@@ -77,15 +109,16 @@ router.post("/", async (req, res) => {
 
 // PUT /api/usuarios/:id
 router.put("/:id", async (req, res) => {
-  const { id } = req.params
-  const { nome, layout, empresa_id, perfil_id } = req.body;
+  const { id } = req.params;
+  const { nome, layout, empresaId, perfilId } = req.body;
 
-  const sql = "UPDATE Usuarios SET nome = ?, layout = ?, empresa_id = ?, perfil_id = ? WHERE id = ?";
-  const params = [nome, layout, empresa_id, perfil_id || null, id];
+  const sql =
+    "UPDATE Usuarios SET nome = ?, layout = ?, empresa_id = ?, perfil_id = ? WHERE id = ?";
+  const params = [nome, layout, empresaId, perfilId || null, id];
 
   db.query(sql, params, (erro) => {
-      if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Usuário atualizado com sucesso!" });
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    res.json({ mensagem: "Usuário atualizado com sucesso!" });
   });
 });
 
@@ -97,9 +130,9 @@ router.delete("/:id", async (req, res) => {
   const params = [id];
 
   db.query(sql, params, (erro) => {
-      if (erro) return res.status(500).json({ erro: erro.sqlMessage });
-      res.json({ mensagem: "Usuário excluido com sucesso!" });
+    if (erro) return res.status(500).json({ erro: erro.sqlMessage });
+    res.json({ mensagem: "Usuário excluido com sucesso!" });
   });
 });
 
-export default router
+export default router;
