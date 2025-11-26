@@ -32,15 +32,14 @@
       <h2>Preset ativo</h2>
       <div class="active-preset-container">
         <div class="preset-preview">
-          <img src="https://i.imgur.com/3a1ac8.png" alt="Preview do layout do dashboard" style="width: 300px; object-fit: contain; border-radius: 8px;">
         </div>
         <div class="preset-details">
           <h3>Default Layout</h3>
-          <p>lorem dijaslkjdklasndjkasnjkldnaslkdnaskldnaslkdnaskjndkasndjkasndjkasndkasnaskjlkdjsanlkdnasndklasndjkasnldkjsanlkdnaslkdasaskjlkdjsanlkdnsandnasdkas djsa djkals djkalsjkdasd n da dmmaskldmsal</p>
-          <div class="action-buttons">
-            <button class="btn btn-secondary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-          </div>
+          <p></p>
+            <div class="action-buttons">
+              <!--  <button class="btn btn-secondary">Edit</button>
+              <button class="btn btn-danger">Delete</button>--> 
+            </div> 
         </div>
       </div>
     </section>
@@ -48,28 +47,27 @@
     <section class="available-presets-section">
       <h2>Presets disponíveis</h2>
       <div class="presets-grid">
-        <div class="preset-card">
-          <div class="preset-thumbnail"></div>
-          <p>Prioridade Câmera</p>
-        </div>
-        <div class="preset-card">
-          <div class="preset-thumbnail"></div>
-          <p>Prioridade Alarme</p>
-        </div>
-        <div class="preset-card">
-          <div class="preset-thumbnail"></div>
-          <p>Custom Layout 1</p>
-        </div>
+          <div class="preset-card" data-preset="1">
+            <div class="preset-thumbnail"></div>
+            <p>Prioridade Câmera</p>
+              <h4>Teste descricao</h4>
+          </div>
+        
+          <div class="preset-card" data-preset="2">
+            <div class="preset-thumbnail"></div>
+            <p>Prioridade Alarme</p>
+          </div>
+        
+          <div class="preset-card" data-preset="3">
+            <div class="preset-thumbnail"></div>
+            <p>Default Layout</p>
+          </div>
       </div>
     </section>
 
-    <footer class="main-footer">
-      <button class="btn btn-primary">Create new preset</button>
-      <button class="btn btn-success">Save Changes</button>
-    </footer>
   </main>
 
-  <script type="module" src="./scripts/config.js"></script>
+  <script type="module" src="./scripts/config.js" defer></script>
 </body>
 
 </html>

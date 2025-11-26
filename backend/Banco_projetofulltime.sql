@@ -33,6 +33,7 @@ CREATE TABLE Usuarios (
     nome VARCHAR(150) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
+    layout INT DEFAULT 1,
     empresa_id INT NOT NULL,
     perfil_id INT,
     FOREIGN KEY (empresa_id) REFERENCES Empresas(id)
@@ -86,10 +87,10 @@ INSERT INTO Empresas (nome, documento) VALUES
 ('Tech Solutions LTDA', '12345678000199'),
 ('InovaCorp SA', '98765432000155');
 
-INSERT INTO Usuarios (nome, email, senha, empresa_id, perfil_id) VALUES
-('João Silva', 'joao@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 1),
-('Maria Souza', 'maria@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 2),
-('Carlos Lima', 'carlos@inova.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 2, 3);
+INSERT INTO Usuarios (nome, email, senha, layout, empresa_id, perfil_id) VALUES
+('João Silva', 'joao@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 1, 1),
+('Maria Souza', 'maria@tech.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 1, 1, 2),
+('Carlos Lima', 'carlos@inova.com', '$2b$10$NKLgkpH5y8erSWGqv2rPXOoKpRvvgmFCzrXPshwwCKZmobhWCFARK', 3, 2, 3);
 
 INSERT INTO Dispositivos (nome, tipo, empresa_id) VALUES
 ('Servidor Principal', 'Servidor', 1),

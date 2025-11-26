@@ -24,7 +24,12 @@ const auth = async ({ ...data }) => {
     body: JSON.stringify(data) 
   });
 
-  return { status: response.status };
+  const result = await response.json(); // pega o corpo da resposta
+
+  return {
+    status: response.status,
+    userId: result.userId  // supondo que o backend retorne { userId: 5, mensagem: "..." }
+  };
 }
 
 const create = async ({ ...data }) => {

@@ -46,7 +46,7 @@ router.post("/auth", (req, res) => {
     const match = await bcrypt.compare(senha, usuario.senha)
 
     if (match) {
-      return res.status(200).json({ status: 200, mensagem: "Login bem-sucedido" });
+      return res.status(200).json({ status: 200, mensagem: "Login bem-sucedido", userId: usuario.id });
     } else {
       return res.status(401).json({ status: 401, mensagem: "Credenciais inválidas" }); 
     }
@@ -55,16 +55,16 @@ router.post("/auth", (req, res) => {
 
 // POST /api/usuarios
 router.post("/", async (req, res) => {
-  const { nome, email, senha, empresa_id, perfil_id } = req.body;
+  const { nome, email, senha, layout, empresa_id, perfil_id } = req.body;
 
-  if (!nome || !email || !senha || !empresa_id || !perfil_id) {
+  if (!nome || !email || !senha || !layout || !empresa_id || !perfil_id) {
     return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);
-    const sql = "INSERT INTO Usuarios (nome, email, senha, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?)";
-    const params = [nome, email, senhaCriptografada, empresa_id, perfil_id];
+    const sql = "INSERT INTO Usuarios (nome, email, senha, layout, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?, ?)";
+    const params = [nome, email, senhaCriptografada, layout, empresa_id, perfil_id];
 
     db.query(sql, params, (erro, resultado) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
@@ -78,10 +78,10 @@ router.post("/", async (req, res) => {
 // PUT /api/usuarios/:id
 router.put("/:id", async (req, res) => {
   const { id } = req.params
-  const { nome, empresa_id, perfil_id } = req.body;
+  const { nome, layout, empresa_id, perfil_id } = req.body;
 
-  const sql = "UPDATE Usuarios SET nome = ?, empresa_id = ?, perfil_id = ? WHERE id = ?";
-  const params = [nome, empresa_id, perfil_id || null, id];
+  const sql = "UPDATE Usuarios SET nome = ?, layout = ?, empresa_id = ?, perfil_id = ? WHERE id = ?";
+  const params = [nome, layout, empresa_id, perfil_id || null, id];
 
   db.query(sql, params, (erro) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });

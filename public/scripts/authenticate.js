@@ -5,9 +5,11 @@ const login = async ({ email, senha }) => {
   loginAsAdm({ email, senha })
 
   const response = await services.api.usuarios.auth({ email, senha })
+  console.log("Resposta do auth:", response);
 
   if (response.status === 200) {
     localStorage.setItem('keyToken', auth.USER_TOKEN);
+    localStorage.setItem('userId', response.userId);
     window.location.href = '/dashboard.html';
   } else {
     window.alert("Login Inválido");
