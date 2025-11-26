@@ -74,16 +74,16 @@ router.post("/auth", (req, res) => {
 
 // POST /api/usuarios
 router.post("/", async (req, res) => {
-  const { nome, email, senha, empresa_id, perfil_id } = req.body;
+  const { nome, email, senha, empresaId, perfilId } = req.body;
 
-  if (!nome || !email || !senha || !empresa_id || !perfil_id) {
+  if (!nome || !email || !senha || !empresaId || !perfilId) {
     return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
   }
 
   try {
     const senhaCriptografada = await bcrypt.hash(senha, 10);
     const sql = "INSERT INTO Usuarios (nome, email, senha, empresa_id, perfil_id) VALUES (?, ?, ?, ?, ?)";
-    const params = [nome, email, senhaCriptografada, empresa_id, perfil_id];
+    const params = [nome, email, senhaCriptografada, empresaId, perfilId];
 
     db.query(sql, params, (erro, resultado) => {
       if (erro) return res.status(500).json({ erro: erro.sqlMessage });
