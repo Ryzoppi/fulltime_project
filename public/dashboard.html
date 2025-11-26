@@ -7,91 +7,85 @@
   <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
   <title>Dashboard</title>
 </head>
+
 <body>
-  <!-- Cabeçalho -->
   <header id="cabecalho">
     <nav class="navbar">
-      <a href="dashboard.html"><img src="assets/icon.png" alt="Logo da Fulltime" class="logo"></a>
+      <a href="dashboard.html"><img src="assets/icon.png" alt="Logo" class="logo"></a>
+
       <div class="nav-links">
-        <a href="dashboard.html" id="linkDashboard" class="active">Dashboard</a>
-        <a href="config.html" id="linkConfig">Configurações</a>
+        <a href="dashboard.html" class="active" id="linkDashboard">Dashboard</a>
+        <a href="config.html" id="linkConfiguracoes">Configurações</a>
         <a href="gerenciamento.html" id="linkGerenciamento">Gerenciamento</a>
       </div>
+
       <a href="#" id="logout">Sair</a>
     </nav>
   </header>
+
   <main class="container">
     <h1>Dashboard</h1>
-    <div>
+
+    <!-- PRIORIDADE ALTA -->
+    <section>
       <h2>Prioridade Alta</h2>
-      <div class="prioridadeAlta">        
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <div class="alarmes">
-          <h3 class="tituloAlarmes">Alarmes</h3>
-          <div class="alarme">
-            <h3>Alarme de Incêndio</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Frente</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
-          <div class="alarme">
-            <h3>Alarme Fundo</h3>
-            <p>Ativado</p>
-          </div>
+      <div class="grupo" id="grupoAlta">
+        <div id="camerasAlta" class="cameras">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+        </div>
+
+        <div id="alarmesAlta" class="alarmes">
+          <h3>Alarmes</h3>
+          <div class="alarme"><h3>Incêndio</h3><p>Ativado</p></div>
+          <div class="alarme"><h3>Barreira</h3><p>Ativado</p></div>
+          <div class="alarme"><h3>Frente</h3><p>Ativado</p></div>
         </div>
       </div>
-    </div>
-    <div>
+    </section>
+
+    <!-- PRIORIDADE MEDIA -->
+    <section>
       <h2>Prioridade Média</h2>
-      <div class="prioridadeMedia">        
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <div class="alarmes">
-          <h3 class="tituloAlarmes">Alarmes</h3>
-          <div class="alarme">
-            <h3>Sensor de Barreira</h3>
-            <p>Ativado</p>
-          </div>
+      <div class="grupo" id="grupoMedia">
+        <div id="camerasMedia" class="cameras">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+        </div>
+
+        <div id="alarmesMedia" class="alarmes">
+          <h3>Alarmes</h3>
+          <div class="alarme"><h3>Incêndio</h3><p>Ativado</p></div>
+          <div class="alarme"><h3>Frente</h3><p>Ativado</p></div>
         </div>
       </div>
-    </div>
-    <div>
+    </section>
+
+    <!-- PRIORIDADE BAIXA -->
+    <section>
       <h2>Prioridade Baixa</h2>
-      <div class="prioridadeBaixa">        
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
-        <img src="./assets/img-exemplo.jpg" alt="Imagem de Câmera">
+      <div class="grupo" id="grupoBaixa">
+        <div id="camerasBaixa" class="cameras">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+          <img src="assets/img-exemplo.jpg">
+        </div>
+
+        <div id="alarmesBaixa" class="alarmes">
+          <h3>Alarmes</h3>
+          <div class="alarme"><h3>Barreira</h3><p>Ativado</p></div>
+        </div>
       </div>
-    </div>
+    </section>
+
   </main>
-      
+
   <footer>
-      <p>&copy; 2025 - Fábrica de Projetos</p>
+    <p>© 2025 - Fábrica de Projetos</p>
   </footer>
-  
+
   <script type="module" src="./scripts/dashboard.js"></script>
 </body>
 </html>

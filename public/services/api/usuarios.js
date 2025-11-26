@@ -92,4 +92,18 @@ const destroy = async ({ id }) => {
   }
 }
 
-export default { get, auth, create, update, destroy }
+const updateLayout = async (userId, layout) => {
+  const response = await fetch(`${url}/usuarios/${userId}/layout`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ layout })
+  });
+
+  if (!response.ok) throw new Error(`Response status: ${response.status}`);
+
+  return await response.json();
+}
+
+export default { get, auth, create, update, destroy, updateLayout }

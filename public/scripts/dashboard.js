@@ -1,24 +1,71 @@
-import authenticate from "./authenticate.js"
+import authenticate from "./authenticate.js";
 import services from "../services/index.js";
 
-document.addEventListener('DOMContentLoaded', async () => {
-  authenticate.validateAuth()
+document.addEventListener("DOMContentLoaded", async () => {
+  authenticate.validateAuth();
 
   if (authenticate.isAdm()) {
-    document.getElementById('linkGerenciamento').style.display = 'block'
+    document.getElementById("linkGerenciamento").style.display = "block";
   }
 
-    const userId = localStorage.getItem("userId");
-    if (!userId) return;
+  const userId = localStorage.getItem("userId");
+  if (!userId) return;
 
-    // pega o usuário CRU do banco
-    const user = await services.api.usuarios.get({ id: userId });
+  // ---- Pega o usuário real do banco
+  const result = await services.api.usuarios.get({ id: userId });
+  const user = result[0];
+  const layout = Number(user?.layout ?? 3);
 
+  aplicarLayoutGlobal(layout);
 
-    if (!user) {
-      console.error("Erro ao buscar usuário");
-      return;
-    }
+  document.getElementById("logout")
+    .addEventListener("click", () => authenticate.logout());
+});
+
+/* =======================================================
+   Função principal — aplica o layout em todas prioridades
+   ======================================================= */
+function aplicarLayoutGlobal(layout) {
+
+  const container = document.querySelector("main.container");
+
+  const cameras = [
+    document.getElementById("camerasAlta"),
+    document.getElementById("camerasMedia"),
+    document.getElementById("camerasBaixa")
+  ];
+
+  const alarmes = [
+    document.getElementById("alarmesAlta"),
+    document.getElementById("alarmesMedia"),
+    document.getElementById("alarmesBaixa")
+  ];
+
+  const secoes = [
+    document.getElementById("grupoAlta").parentElement,  // section
+    document.getElementById("grupoMedia").parentElement,
+    document.getElementById("grupoBaixa").parentElement
+  ];
+
+  // --- Reset section contents ---
+  secoes.forEach(sec => {
+    const grupo = sec.querySelector(".grupo");
+    grupo.innerHTML = "";
+  });
+
+  // ----------------------------
+  // LAYOUT 1 → CÂMERAS EM CIMA
+  // ----------------------------
+  if (layout === 1) {
+    secoes[0].querySelector(".grupo").appendChild(cameras[0]);
+    secoes[1].querySelector(".grupo").appendChild(cameras[1]);
+    secoes[2].querySelector(".grupo").appendChild(cameras[2]);
+
+    secoes[0].querySelector(".grupo").appendChild(alarmes[0]);
+    secoes[1].querySelector(".grupo").appendChild(alarmes[1]);
+    secoes[2].querySelector(".grupo").appendChild(alarmes[2]);
+    return;
+  }
 
     // o layout salvo no banco
     const layout = user.layout ?? 0;
@@ -64,7 +111,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         container.appendChild(alarmes);
         cameras.slice(1).forEach(cam => container.appendChild(cam));
     }
-  }
-});
 
-document.getElementById('logout').addEventListener('click', () => authenticate.logout());
+    if (alarmes) {
+      alarmes.classList.remove("prioridade-1", "prioridade-2", "prioridade-3");
+      alarmes.classList.add(`prioridade-${grupo.prioAlm}`);
+      alarmes.style.order = grupo.prioAlm;
+    }
+  });
+}
+
+
+

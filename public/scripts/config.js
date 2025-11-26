@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     3: {
       title: "Default Layout",
       desc: "Layout padrão com câmeras e alarmes organizados igualmente.",
-      image: "https://i.imgur.com/3a1ac8.png"
+      image: "assets/icon.png"
     }
   };
 
@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeTitle = document.querySelector(".preset-details h3");
   const activeDesc = document.querySelector(".preset-details p");
   const cards = [...document.querySelectorAll(".preset-card")];
+
+    if (!activeImage || !activeTitle || !activeDesc) {
+    console.error("Elementos do DOM não encontrados!");
+    return; // evita erros posteriores
+  }
 
   const userId = localStorage.getItem("userId");
 
@@ -59,18 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         // salva no backend (inclua token se necessário no users.update)
-        const updateResult = await services.api.usuarios.update({
-          id: userId,
-          layout: presetId
-        });
-
+        const updateResult = await services.api.usuarios.updateLayout(userId, presetId);
         console.log("Resultado do update:", updateResult);
 
         // re-fetch para confirmar persistência (opcional, útil para debug)
         const fresh = await services.api.usuarios.get({ id: userId });
-        console.log("Após update, GET retorna:", fresh);
-
-        if (String(fresh.layout) !== String(presetId)) {
+        const freshUser = fresh[0];
+        console.log("Após update, GET retorna:", freshUser);
+              
+        if (String(freshUser.layout) !== String(presetId)) {
           console.warn("ATENÇÃO: backend não persistiu layout (ou retornou valor diferente).");
         } else {
           console.log("Persistência confirmada.");
